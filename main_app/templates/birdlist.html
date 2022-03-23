@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Bird List
+{% endblock %}
+
+{% block content %}
+<h1>Our Birds:</h1>
+    {% for bird in birds %}
+        <h3>Name: {{bird.name}}</h3>
+        <h3>Age: {{bird.age}}</h3>
+        <h3>Gender: {{bird.gender}}</h3>
+    {% endfor %}
+{% endblock %}
