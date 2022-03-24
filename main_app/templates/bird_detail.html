@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <img src="{{bird.img}}" alt="picture of {{bird.name}}"/>
+</div>
+<div>
+    <h3>Age: {{bird.age}}</h3>
+    <h3>Gender: {{bird.gender}}</h3>
+</div>
+<div>
+    <a href="{% url 'bird_update' bird.pk %}">Update</a>
+    <a href="{% url 'bird_delete' bird.pk %}">Delete</a>
+</div>
+
+{% endblock %} 

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View # View class to handle requests
 from django.http import HttpResponse #This is our responses
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .models import Bird
 
@@ -16,7 +16,7 @@ class Home(TemplateView):
     # def get(self, request):
     #     # Here we are returning a generic response
     #     # This is similar to res.send() in express
-    #     return HttpResponse("Cats Home")
+    #     return HttpResponse("Birds Home")
 
 class About(TemplateView):
     template_name = 'about.html'
@@ -24,37 +24,6 @@ class About(TemplateView):
     # def get(self, request):
     #     return HttpResponse("Birds About")
 
-
-# ---------------------------------------------------
-# ---------------------------------------------------
-# after database, we no longer need class Bird
-
-# class Bird: 
-
-#     def __init__(self, name, age, gender):
-#         self.name = name
-#         self.age = age
-#         self.gender = gender
-
-
-# birds = [
-#     Bird("Cardi", 10, "Female"),
-#     Bird("Robin", 2, "Male"),
-#     Bird("Sparrow", 5, "Male"),
-#     Bird("Woody", 1, "Male"),
-#     Bird("Jay", 18, "Female")
-# ]
-
-# class Bird_List(TemplateView):
-#     template_name = 'birdlist.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['birds'] = birds # this is where we add the key into our context object for the view to use
-#         return context
-
-# ---------------------------------------------------
-# ---------------------------------------------------
 
 class Bird_List(TemplateView):
     template_name = 'birdlist.html'
@@ -81,3 +50,20 @@ class Bird_Create(CreateView):
 class Bird_Detail(DetailView): 
     model = Bird
     template_name="bird_detail.html"
+
+
+class Bird_Update(UpdateView):
+    model = Bird
+    fields = ['name', 'img', 'age', 'gender']
+    template_name = "bird_update.html"
+    # success_url = "/birds/"
+    def get_success_url(self):
+        return reverse('bird_detail', kwargs={'pk': self.object.pk})
+
+
+class Bird_Delete(DeleteView):
+    model = Bird
+    template_name = "bird_delete_confirm.html"
+    success_url = "/birds/"
+
+

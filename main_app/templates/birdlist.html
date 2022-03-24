@@ -8,7 +8,7 @@ Bird List
 
 <form>
     <div>
-        <!-- searches for the name of the cat -->
+        <!-- searches for the name of the bird -->
         <input type="text" name="name" placeholder="name"/>
         <input type="submit" value="Search"/>
     </div>
@@ -18,10 +18,11 @@ Bird List
 <h1>{{header}}</h1>
     {% for bird in birds %}
     <img src="{{bird.img}}" alt="{{bird.name}}">
-    <a href="{% url 'bird_detail' bird.pk %}">
-        <h3>Name: {{bird.name}}</h3>
-    </a>
-    <h3>Age: {{bird.age}}</h3>
-    <h3>Gender: {{bird.gender}}</h3>
+        <a href="{% url 'bird_detail' bird.pk %}">
+            <h3>Name: {{bird.name}}</h3>
+        </a>
+        <h3>Age: {{bird.age}}</h3>
+        <h3>Gender: {{bird.gender}}</h3>
+
     {% endfor %}
 {% endblock %}
