@@ -15,10 +15,12 @@ Bird List
     <!-- this a tag will redirect back to birdlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
     <a href="{% url 'bird_list' %}">Clear Search</a>
 </form>
-<h1>Birds</h1>
+<h1>{{header}}</h1>
     {% for bird in birds %}
     <img src="{{bird.img}}" alt="{{bird.name}}">
-    <h3>Name: {{bird.name}}</h3>
+    <a href="{% url 'bird_detail' bird.pk %}">
+        <h3>Name: {{bird.name}}</h3>
+    </a>
     <h3>Age: {{bird.age}}</h3>
     <h3>Gender: {{bird.gender}}</h3>
     {% endfor %}

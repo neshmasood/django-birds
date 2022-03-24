@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View # View class to handle requests
 from django.http import HttpResponse #This is our responses
+from django.views.generic import DetailView, CreateView
+from django.urls import reverse
 from .models import Bird
 
 # Create your views here.
@@ -65,5 +67,17 @@ class Bird_List(TemplateView):
             context['header'] = f"Searching for {name}"
         else:
             context['birds'] = Bird.objects.all()
-            context['header'] = "Birds" # this is where we add the key into our context object for the view to use
+            context['header'] = "Beautiful Birds" # this is where we add the key into our context object for the view to use
         return context
+
+class Bird_Create(CreateView):
+    model = Bird
+    fields = ['name', 'img', 'age', 'gender']
+    template_name = "bird_create.html"
+    # success_url = "/birds/"
+    def get_success_url(self):
+        return reverse('bird_detail', kwargs={'pk': self.object.pk})
+
+class Bird_Detail(DetailView): 
+    model = Bird
+    template_name="bird_detail.html"
