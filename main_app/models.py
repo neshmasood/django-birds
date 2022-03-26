@@ -23,7 +23,7 @@ class Bird(models.Model):
     age = models.IntegerField()
     gender = models.CharField(max_length=10, choices = GENDER_CHOICES)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    Birdhouse = models.ManyToManyField(BirdHouse) # M:M example
+    birdhouses = models.ManyToManyField(BirdHouse) # M:M example
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -6,7 +6,7 @@
     {% for birdhouse in birdhouses %}
         <div>
             <a href="{% url 'birdhouses_show' birdhouse.id %}">
-                <div class="card-content">
+                <div>
                     <span>{{ birdhouse.name }}</span>
                     <p>House_Type: {{ birdhouse.house_type }}</p>
                 </div>
