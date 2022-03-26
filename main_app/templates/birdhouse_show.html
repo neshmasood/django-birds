@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Bird House Details</h1>
+
+    <div>
+        <div>
+            <h2>{{ birdhouse.name }}</h2>
+            <p>Type: {{ birdhouse.type }}</p>
+            <p>Owned by:</p>
+            {% for bird in birdhouse.bird_set.all %}
+                <p>{{ bird.name }}</p>
+            {% empty %}
+                <p>Nobody has this house</p>
+            {% endfor %}
+        </div>
+
+        <div>
+            <a href="{% url 'birdhouses_update' birdhouse.id %}">Edit</a>
+            <a href="{% url 'birdhouses_delete' birdhouse.id %}">Delete</a>
+        </div>
+    </div>
+
+{% endblock %}

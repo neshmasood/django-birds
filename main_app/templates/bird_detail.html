@@ -5,11 +5,19 @@
     <img src="{{bird.img}}" alt="picture of {{bird.name}}"/>
 </div>
 <div>
+    <h3>Name: {{ bird.name }}</h3>
     <h3>Age: {{bird.age}}</h3>
     <h3>Gender: {{bird.gender}}</h3>
     <p>Adopted by:
         <a href="/user/{{ bird.user.username }}">{{ bird.user.username }}</a>
     </p>
+
+    <h3>Houses owned:</h3>
+    {% for birdhouse in bird.birdhouses.all %}
+        <div>{{ birdhouse.name }}</div>
+    {% empty %}
+        <div> Bird has no house 🙁</div>
+    {% endfor %}
 </div>
 <div>
     <a href="{% url 'bird_update' bird.pk %}">Update</a>

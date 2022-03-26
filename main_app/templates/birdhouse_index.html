@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Bird House List</h1>
+
+    {% for birdhouse in birdhouses %}
+        <div>
+            <a href="{% url 'birdhouses_show' birdhouse.id %}">
+                <div class="card-content">
+                    <span>{{ birdhouse.name }}</span>
+                    <p>Type: {{ birdhouse.type }}</p>
+                </div>
+            </a>
+        </div>
+        <hr/>
+    {% endfor %}
+
+{% endblock %}
