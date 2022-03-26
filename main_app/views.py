@@ -4,7 +4,7 @@ from django.views import View # View class to handle requests
 from django.http import HttpResponse, HttpResponseRedirect #This is our responses
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
-from .models import Bird
+from .models import Bird, BirdHouse
 from django.contrib.auth.models import User
 
 
@@ -62,7 +62,7 @@ class Bird_Detail(DetailView):
 
 class Bird_Update(UpdateView):
     model = Bird
-    fields = ['name', 'img', 'age', 'gender']
+    fields = ['name', 'img', 'age', 'gender', 'birdhouse']
     template_name = "bird_update.html"
     # success_url = "/birds/"
     def get_success_url(self):
@@ -79,4 +79,31 @@ def profile(request, username):
     user = User.objects.get(username=username)
     birds = Bird.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'birds': birds})
+
+
+# BirdHouses view functions
+def birdhouses_index(request):
+    birdhouses = BirdHouse.objects.all()
+    return render(request, 'birdhouse_index.html', {'birdhouses': birdhouses })
+
+def birdhouses_show(request, birdhouse_id):
+    birdhouse = BirdHouse.objects.get(id=birdhouse_id)
+    return render(request, 'birdhouse_show.html', {'birdhouse': birdhouse})
+
+class BirdHouseCreate(CreateView):
+    model = BirdHouse
+    fields = '__all__'
+    template_name = "birdhouse_form.html"
+    success_url = '/birdhouses'
+
+class BirdHouseUpdate(UpdateView):
+    model = BirdHouse
+    fields = ['name', 'type']
+    template_name = "birdhouse_update.html"
+    success_url = '/birdhouses'
+
+class BirdHouseDelete(DeleteView):
+    model = BirdHouse
+    template_name = "birdhouse_confirm_delete.html"
+    success_url = '/birdhouses'
 
