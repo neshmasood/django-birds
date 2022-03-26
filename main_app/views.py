@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View # View class to handle requests
-from django.http import HttpResponse #This is our responses
+from django.http import HttpResponse, HttpResponseRedirect #This is our responses
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .models import Bird
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -41,11 +43,17 @@ class Bird_List(TemplateView):
 
 class Bird_Create(CreateView):
     model = Bird
-    fields = ['name', 'img', 'age', 'gender']
+    fields = ['name', 'img', 'age', 'gender', 'user']
     template_name = "bird_create.html"
     # success_url = "/birds/"
-    def get_success_url(self):
-        return reverse('bird_detail', kwargs={'pk': self.object.pk})
+    # def get_success_url(self):
+    #     return reverse('bird_detail', kwargs={'pk': self.object.pk})
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/birds')
+
 
 class Bird_Detail(DetailView): 
     model = Bird
@@ -66,4 +74,9 @@ class Bird_Delete(DeleteView):
     template_name = "bird_delete_confirm.html"
     success_url = "/birds/"
 
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    birds = Bird.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'birds': birds})
 

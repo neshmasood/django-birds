@@ -7,6 +7,9 @@
 <div>
     <h3>Age: {{bird.age}}</h3>
     <h3>Gender: {{bird.gender}}</h3>
+    <p>Adopted by:
+        <a href="/user/{{ bird.user.username }}">{{ bird.user.username }}</a>
+    </p>
 </div>
 <div>
     <a href="{% url 'bird_update' bird.pk %}">Update</a>
