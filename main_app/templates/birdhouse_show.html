@@ -6,7 +6,7 @@
     <div>
         <div>
             <h2>{{ birdhouse.name }}</h2>
-            <p>Type: {{ birdhouse.type }}</p>
+            <p>House_type: {{ birdhouse.house_type }}</p>
             <p>Owned by:</p>
             {% for bird in birdhouse.bird_set.all %}
                 <p>{{ bird.name }}</p>

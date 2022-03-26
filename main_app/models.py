@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class BirdHouse(models.Model):
     name = models.CharField(max_length=100)
-    color = models.CharField(max_length=50)
+    house_type = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name

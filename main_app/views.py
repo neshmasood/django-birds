@@ -43,7 +43,7 @@ class Bird_List(TemplateView):
 
 class Bird_Create(CreateView):
     model = Bird
-    fields = ['name', 'img', 'age', 'gender', 'user', 'birdhouses']
+    fields = ['name', 'img', 'age', 'gender', 'user']
     template_name = "bird_create.html"
     # success_url = "/birds/"
     # def get_success_url(self):
@@ -98,7 +98,7 @@ class BirdHouseCreate(CreateView):
 
 class BirdHouseUpdate(UpdateView):
     model = BirdHouse
-    fields = ['name', 'type']
+    fields = ['name', 'house_type']
     template_name = "birdhouse_update.html"
     success_url = '/birdhouses'
 
