@@ -141,8 +141,10 @@ def login_view(request):
                     return HttpResponseRedirect('/user/'+u)
                 else:
                     print('The account has been disabled.')
+                    return HttpResponseRedirect('/login')
             else:
                 print('The username and/or password is incorrect.')
+                return HttpResponseRedirect('/login')
     else: # it was a get request so send the empty login form
         # form = LoginForm()
         form = AuthenticationForm()
@@ -162,7 +164,7 @@ def signup_view(request):
             user = form.save()
             login(request, user)
             print('HEY', user.username)
-            return HttpResponseRedirect('/user/'+str(user))
+            return HttpResponseRedirect('/user/'+str(user.username))
         else:
             HttpResponse('<h1>Try Again</h1>')
     else:
