@@ -17,5 +17,7 @@ urlpatterns = [
     path('birdhouses/create/', views.BirdHouseCreate.as_view(), name='birdhouses_create'),
     path('birdhouses/<int:pk>/update/', views.BirdHouseUpdate.as_view(), name='birdhouses_update'),
     path('birdhouses/<int:pk>/delete/', views.BirdHouseDelete.as_view(), name='birdhouses_delete'),
-   
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('signup/', views.signup_view, name='signup')
 ]

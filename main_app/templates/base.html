@@ -11,14 +11,42 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav>
+    <nav classname="">
+        {% if user.is_authenticated %}
+        <span><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></span>
+        <span> | </span>
+        <span><a href="{% url 'logout' %}">Logout</a></span>
+        <span> | </span>
+        {% else %}
+        <span><a href="{% url 'login' %}">Login</a></span>
+        <span> | </span>
+        <span><a href="{% url 'signup' %}">SignUp</a></span>
+        {% endif %}
         <a href="/admin">Admin</a>
+        <span> | </span>
+        <a href="/">Home</a>
+        <span> | </span>
+        <a href="/about">About</a>
+        <span> | </span>
+        <a href="/birds">Birds</a>
+        <span> | </span>
+        <a href="/birdhouses">Bird Houses</a>
+        <span> | </span>
+        <a href="{% url 'bird_create' %}">Add a Bird</a>
+        <span> | </span>
+        <a href="{% url 'birdhouses_create' %}">Add a Bird House</a>
+        <span> | </span>
+
+
+
+
+        <!-- <a href="/admin">Admin</a>
         <a href="/">Home |</a>
         <a href="/about">About |</a>
         <a href="/birds">Birds |</a>
         <a href="/birdhouses">Bird Houses |</a>
         <a href="{% url 'bird_create' %}">Add a Bird |</a>
-        <a href="{% url 'birdhouses_create' %}">Add a BirdHouse |</a>
+        <a href="{% url 'birdhouses_create' %}">Add a BirdHouse |</a> -->
     </nav>
     {% block content %}
 
