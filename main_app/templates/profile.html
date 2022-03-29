@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+Django Birds Profile
+{% endblock %}
+
 {% block content %}
 
-    <h1>{{ username }}'s Collection</h1>
+    <h1>{{ username }}'s Bird Collection</h1>
 
     {% for bird in birds %}
         <a href="/birds/{{ bird.id }}">

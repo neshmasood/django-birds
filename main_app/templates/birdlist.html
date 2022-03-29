@@ -9,7 +9,7 @@ Bird List
 <form>
     <div>
         <!-- searches for the name of the bird -->
-        <input type="text" name="name" placeholder="name"/>
+        <input type="text" name="name" placeholder="bird name"/>
         <input type="submit" value="Search"/>
     </div>
     <!-- this a tag will redirect back to birdlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
@@ -21,8 +21,8 @@ Bird List
         <a href="{% url 'bird_detail' bird.pk %}">
             <h3>Name: {{bird.name}}</h3>
         </a>
-        <h3>Age: {{bird.age}}</h3>
-        <h3>Gender: {{bird.gender}}</h3>
+            <h3>Age: {{bird.age}}</h3>
+            <h3>Gender: {{bird.gender}}</h3>
 
     {% endfor %}
 {% endblock %}

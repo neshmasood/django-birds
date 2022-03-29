@@ -1,0 +1,84 @@
+body {
+    background-color: rgb(228, 227, 227); 
+}
+
+#about{
+    text-align: center;
+    color:rgb(48, 91, 135)
+} 
+
+#bird_list{
+    text-align: center;
+} 
+
+h3 {
+    color: rgb(48, 91, 135);
+}
+
+h1 {
+    color: rgb(211, 88, 39);
+    
+}
+
+nav {
+    background-color: #7fb7be;
+    color: rgb(48, 91, 135);
+    text-decoration: none;
+    padding: 0;
+    display: flex;
+    align-items:center;
+  
+}
+
+nav a, a:focus, a:active {
+    color: inherit;
+    border: 1px solid #8ac4cb;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 8px;
+} 
+
+a:hover{
+    color: inherit;
+    border: 1px solid #8ac4cb;
+    border-radius: 3px;
+    padding: 3px;
+    margin: 5px;
+
+}
+
+img{
+    border: 1px solid rgb(48, 91, 135);
+    border-radius: 30px;
+    margin: 10px
+}
+
+input[type=text]{
+    color: rgb(48, 91, 135);
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+
+} 
+
+input[type=submit] {
+    border: 2px solid 7fb7be;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 5px;
+    background-color:7fb7be;
+    color: rgb(48, 91, 135);
+   
+    
+}
+input[type=submit]:hover {
+    color: inherit;
+    border: 1px solid #8ac4cb;
+    border-radius: 3px;
+    padding: 3px;
+    margin: 5px;
+
+}
+
+
